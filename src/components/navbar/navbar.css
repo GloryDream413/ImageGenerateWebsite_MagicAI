@@ -1,0 +1,23 @@
+.magicai_navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 2rem 6rem;
+}
+
+.magicai_navbar-links {
+    flex: 1;
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+}
+
+.magicai_navbar-links_logo {
+    margin-right: 2rem;
+}
+
+.magicai_navbar_logo img {
+    width: 62.56px;
+    height: 16.02px;
+}
