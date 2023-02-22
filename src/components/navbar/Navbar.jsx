@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="gpt3__navbar-sign">
-        <button type="button">CONNECT WALLET</button>
+        <button type="button" >CONNECT WALLET</button>
       </div>
       <div className="gpt3__navbar-menu">
         {toggleMenu
