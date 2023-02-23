@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import people from '../../assets/people.png';
-import ai from '../../assets/ai.png';
 import './header.css';
+import axios from 'axios'
+import ai from '../../assets/ai.png'
 
 export const Header = () => {
   const [prompt, setPrompt] = useState('')
@@ -10,7 +11,10 @@ export const Header = () => {
     setPrompt(event.target.value);
   };
 
+  const [pictureRoute, setPictureRoute] = useState('')
+
   const onGenerate = async () => {
+    console.log(ai);
     const response = await axios.post(
       'http://65.21.236.218:8081/getImage',
       {
@@ -22,7 +26,8 @@ export const Header = () => {
         }
       }
     )
-    console.log(response);
+    setPictureRoute(response.data.response.output[0]);
+    console.log(pictureRoute);
   };
 
   return (
@@ -50,7 +55,12 @@ export const Header = () => {
       </div>
 
       <div className="gpt3__header-image">
-        <img src={ai} alt="ai" />
+        {(pictureRoute === '') &&
+          <img src={ai} alt="ai" />
+        }
+        {(pictureRoute !== '') &&
+          <img src={pictureRoute} alt="ai" />
+        }
       </div>
     </div>
   );
