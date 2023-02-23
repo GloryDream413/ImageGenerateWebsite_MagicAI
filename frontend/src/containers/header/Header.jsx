@@ -3,80 +3,26 @@ import { useState } from 'react';
 import people from '../../assets/people.png';
 import ai from '../../assets/ai.png';
 import './header.css';
-import axios from 'axios'
 
 export const Header = () => {
   const [prompt, setPrompt] = useState('')
-  const sleep = ms => new Promise(r => setTimeout(r, ms))
-
   const onPromptChange = (event) => {
     setPrompt(event.target.value);
   };
 
-  async function getPredictionStatus(id) {
-    const response = await axios.get(
-      'https://api.replicate.com/v1/predictions/' + id,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'access-control-allow-credentials': true,
-          'access-control-allow-methods': '*',
-          'Access-Control-Allow-Origin': '*',
-          Authorization: `Token 57b5717e8632693a79f0747038512564a640764c`
-        }
-      }
-    )
-
-    const prediction = response.data
-    return prediction
-  }
-
-  async function createPrediction(text) {
+  const onGenerate = async () => {
     const response = await axios.post(
-      'https://api.replicate.com/v1/predictions',
+      'http://65.21.236.218:8081/getImage',
       {
-        version:
-          'b78a34f0ec6d21d22ae3b10afd52b219cec65f63362e69e81e4dce07a8154ef8',
-        input: { prompt: "redshift style" + text }
+        input: prompt
       },
       {
         headers: {
-          Authorization: `Token 57b5717e8632693a79f0747038512564a640764c`,
-          'Content-Type': 'application/json',
-          'access-control-allow-credentials': true,
-          'access-control-allow-methods': '*',
-          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json'
         }
       }
     )
-
     console.log(response);
-
-    const prediction = response.data
-    return prediction
-  }
-
-  const onGenerate = async () => {
-    const prediction = await createPrediction(prompt);
-    let response = null;
-    let nCount = 0;
-
-    while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
-      await sleep(1000);
-      nCount++;
-      if (nCount >= 60) {
-        break;
-      }
-      response = await getPredictionStatus(prediction.id)
-      if (response.err || response.output) {
-        break;
-      }
-      if (response.output) {
-        console.log("success");
-      } else {
-        console.log("fail");
-      }
-    }
   };
 
   return (
