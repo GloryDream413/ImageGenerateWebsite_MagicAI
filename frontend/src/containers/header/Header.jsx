@@ -46,6 +46,8 @@ export const Header = () => {
 
         <div className="gpt3__header-content__input">
           <button type="button" onClick={onGenerate}>Generate</button>
+          &nbsp;&nbsp;&nbsp;
+          <a href='https://t.me/Magicai_aibot'><button type="button" >Join Telegram</button></a>
         </div>
 
         <div className="gpt3__header-content__people">
