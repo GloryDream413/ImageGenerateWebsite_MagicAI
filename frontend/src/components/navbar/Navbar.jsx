@@ -29,9 +29,9 @@ const Navbar = () => {
           <Menu />
         </div>
       </div>
-      <div className="gpt3__navbar-sign">
+      {/* <div className="gpt3__navbar-sign">
         <button type="button" >CONNECT WALLET</button>
-      </div>
+      </div> */}
       <div className="gpt3__navbar-menu">
         {toggleMenu
           ? <RiCloseLine color="#fff" size={27} onClick={() => setToggleMenu(false)} />

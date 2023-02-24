@@ -1,9 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, CSSProperties } from "react";
 import people from '../../assets/people.png';
 import './header.css';
 import axios from 'axios'
 import ai from '../../assets/ai.png'
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Header = () => {
   const [prompt, setPrompt] = useState('')
@@ -12,8 +13,10 @@ export const Header = () => {
   };
 
   const [pictureRoute, setPictureRoute] = useState('')
+  const [bLoadingFlag, setLoadingFlag] = useState(false)
 
   const onGenerate = async () => {
+    setLoadingFlag(true);
     console.log(ai);
     const response = await axios.post(
       'http://65.21.236.218:8081/getImage',
@@ -27,7 +30,7 @@ export const Header = () => {
       }
     )
     setPictureRoute(response.data.response.output[0]);
-    console.log(pictureRoute);
+    setLoadingFlag(false);
   };
 
   return (
@@ -47,7 +50,7 @@ export const Header = () => {
         <div className="gpt3__header-content__input">
           <button type="button" onClick={onGenerate}>Generate</button>
           &nbsp;&nbsp;&nbsp;
-          <a href='https://t.me/Magicai_aibot'><button type="button" >Join Telegram</button></a>
+          <a href='https://t.me/magicai_arbitrum'><button type="button" >Join Group</button></a>
         </div>
 
         <div className="gpt3__header-content__people">
@@ -63,6 +66,18 @@ export const Header = () => {
         {(pictureRoute !== '') &&
           <img src={pictureRoute} alt="ai" />
         }
+        <div className="spinner-wrapper">
+          {(bLoadingFlag == true) &&
+            < ClipLoader
+              color='#ffffff'
+              loading={true}
+              cssOverride={true}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          }
+        </div>
       </div>
     </div>
   );
