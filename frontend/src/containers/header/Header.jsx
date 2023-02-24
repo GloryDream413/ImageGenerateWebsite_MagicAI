@@ -35,7 +35,7 @@ export const Header = () => {
       <div className="gpt3__header-content">
         <h1 className="gradient__text">IMAGE GENERATOR</h1>
         <textarea
-          class="desc"
+          className="desc"
           placeholder="Enter your imagine"
           name="prompt"
           value={prompt}
