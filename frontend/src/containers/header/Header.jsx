@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, CSSProperties } from "react";
+import { useState } from "react";
 import people from '../../assets/people.png';
 import './header.css';
 import axios from 'axios'
@@ -29,6 +29,7 @@ export const Header = () => {
         }
       }
     )
+    console.log(response.data.response.output[0]);
     setPictureRoute(response.data.response.output[0]);
     setLoadingFlag(false);
   };
@@ -67,7 +68,7 @@ export const Header = () => {
           <img src={pictureRoute} alt="ai" />
         }
         <div className="spinner-wrapper">
-          {(bLoadingFlag == true) &&
+          {(bLoadingFlag === true) &&
             < ClipLoader
               color='#ffffff'
               loading={true}

@@ -39,7 +39,7 @@ async function createPrediction(text) {
     'https://api.replicate.com/v1/predictions',
     {
       version:
-        'b78a34f0ec6d21d22ae3b10afd52b219cec65f63362e69e81e4dce07a8154ef8',
+        '436b051ebd8f68d23e83d22de5e198e0995357afef113768c20f0b6fcef23c8b',
       input: { prompt: "redshift style" + text }
     },
     {
