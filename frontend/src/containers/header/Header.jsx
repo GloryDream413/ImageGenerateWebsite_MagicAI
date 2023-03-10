@@ -51,12 +51,12 @@ export const Header = () => {
         <div className="gpt3__header-content__input">
           <button type="button" onClick={onGenerate}>Generate</button>
           &nbsp;&nbsp;&nbsp;
-          <a href='https://t.me/magicai_arbitrum'><button type="button" >Join Group</button></a>
+          <a href='https://t.me/GloryDream413_Group'><button type="button" >Join Group</button></a>
         </div>
 
         <div className="gpt3__header-content__people">
           <img src={people} alt="people" />
-          <p>1,600 people requested access a visit in last 24 hours</p>
+          <p>2,400 people requested access a visit in last 24 hours</p>
         </div>
       </div>
 
